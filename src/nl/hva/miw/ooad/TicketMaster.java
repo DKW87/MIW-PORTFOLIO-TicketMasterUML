@@ -51,11 +51,21 @@ public class TicketMaster {
 	 * @param prijs
 	 * @return
 	 */
-	public int meldVoorstellingAan( int a_id, String adres, String datum, double prijs ) {
-		// Opgave 2: Implementeer deze methode
+	public int meldVoorstellingAan(int a_id, String adres, String datum, double prijs) {
+		if (!isGeregistreerdArtiest(a_id)) {
+			return -1;
+		}
 
-		return 0;
+		Artiest artiest = artiesten.get(a_id);
+
+		Voorstelling voorstelling = new Voorstelling(artiest, adres, datum, prijs);
+
+		int v_id = voorstelling.getId();
+		voorstellingen.put(v_id, voorstelling);
+
+		return v_id;
 	}
+
 	
 
 	/**
